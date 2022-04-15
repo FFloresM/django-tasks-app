@@ -1,1 +1,20 @@
-{{ task }}
+<style>
+    table, th, td {
+      border: 1px solid black;
+      /*border-collapse: collapse;*/
+    }
+</style>
+
+<table>
+    <tr>
+      <th>Task</th>
+      <th>Day</th>
+      <th>Reminder</th>
+    </tr>
+    <tr>
+      <td>{{ task.text }}</td>
+      <td>{{ task.day }}</td>
+      <td>{{ task.reminder }}</td>
+    </tr>
+  </table>
+
