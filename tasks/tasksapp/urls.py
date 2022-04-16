@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     # ex: /tasks/5/
     path('<int:task_id>/', views.detail, name='detail'),
+    path("new-task/", views.newTask, name='new-task'),
 ]

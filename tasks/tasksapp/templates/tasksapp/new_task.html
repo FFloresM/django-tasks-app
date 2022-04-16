@@ -1,0 +1,15 @@
+<form action="{% url 'tasks:new-task' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>New Task</h1></legend>
+        <label for="text">Text</label><br>
+        <input type="text" name="text" id="text">
+        <br>
+        <label for="day">Date and time</label><br>
+        <input type="datetime-local" name="day" id="day">
+        <br>
+        <input type="checkbox" name="reminder" id="reminder">
+        <label for="reminder">Reminder</label>
+    </fieldset>
+    <input type="submit" value="Save">
+</form>
