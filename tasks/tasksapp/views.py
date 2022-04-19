@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponseRedirect
 from .models import Task
 from django.views import generic
+from .forms import TaskForm
 
 
 def index(request):
@@ -26,20 +27,24 @@ class IndexView(generic.ListView):
 
 def newTask(request):
     if request.method == "POST":
-        task = Task(
-            text = request.POST['text'],
-            day = request.POST['day'],
-        )
-        try:
-            if request.POST['reminder'] == 'on':
-                reminder = True 
-        except KeyError:
-            reminder = False
-        task.reminder = reminder
-        task.save()
-        return HttpResponseRedirect(render(request, 'tasks:index'))
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            new_task = form.save(commit=False)
+            # hacer algo más con la nueva tarea o modificar algún atributo
+            new_task.save() 
+            return HttpResponseRedirect('/tasks')
     else:
-        return render(request, "tasksapp/new_task.html")
+        form = TaskForm()
+    return render(request, "tasksapp/new_task.html", {'form': form})
+
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    fields = '__all__'
+    template_name_suffix = '_update_form'
+    # can specify success url
+    # url to redirect after successfully
+    # updating details
+    success_url ="/tasks/"
 
 
 

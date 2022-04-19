@@ -8,4 +8,5 @@ urlpatterns = [
     # ex: /tasks/5/
     path('<int:task_id>/', views.detail, name='detail'),
     path("new-task/", views.newTask, name='new-task'),
+    path('<int:pk>/update', views.TaskUpdateView.as_view(), name='update'),
 ]

@@ -2,6 +2,10 @@
     {% csrf_token %}
     <fieldset>
         <legend><h1>New Task</h1></legend>
+        {{ form.as_p }}
+    </fieldset>
+    <!--<fieldset>
+        <legend><h1>New Task</h1></legend>
         <label for="text">Text</label><br>
         <input type="text" name="text" id="text">
         <br>
@@ -10,6 +14,6 @@
         <br>
         <input type="checkbox" name="reminder" id="reminder">
         <label for="reminder">Reminder</label>
-    </fieldset>
+    </fieldset>-->
     <input type="submit" value="Save">
 </form>
